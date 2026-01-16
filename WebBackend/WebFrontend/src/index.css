@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+.Font_Text{
+  font-family: 'Gill Sans MT';
+}
+
+.Box_Shedow {
+  box-shadow: 1px 1px 4px #cccc;
+}
+
+.BG_Color {
+  background: linear-gradient(to right,#051d40, #145da0, #f9fafb );
+}
+
+.Text_Color {
+  background: linear-gradient(to right, #051d40, #145da0, #f9fafb );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Base: Mobile (default) */
+body {
+  font-size: 16px;
+}
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}
+
+/* Tablet (md: ≥768px) */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+/* Laptop (lg: ≥1024px) */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+}
+
+/* Desktop (xl: ≥1280px) */
+@media (min-width: 1280px) {
+  body {
+    font-size: 25px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+}
