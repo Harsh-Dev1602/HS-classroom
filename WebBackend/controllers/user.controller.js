@@ -4,6 +4,7 @@ import Instructor  from "../models/instructor.model.js"
 import createTokenAndSaveCookie from "../jwt/generateToken.js";
 
 import bcrypt from "bcrypt";
+
 //  Register API
 export const register = async (req, res) => {
   const { fullname, email, password } = req.body;

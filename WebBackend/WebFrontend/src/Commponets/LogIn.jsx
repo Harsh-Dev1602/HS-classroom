@@ -20,7 +20,7 @@ function Login() {
             email: data.email,
             password: data.password,
         };
-        console.log(userInfo);
+        // console.log(userInfo);
         axios.post("/olms-api/user/login", userInfo)
           .then((response) => {
             if (response.data) {

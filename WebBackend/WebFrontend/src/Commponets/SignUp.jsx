@@ -15,26 +15,26 @@ function SignUp() {
     } = useForm()
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const userInfo = {
             fullname:data.fullname,
             email: data.email,
             password: data.password,
         };
-        console.log(userInfo);
-        // axios.post("/oes-api/user/login", userInfo)
-        //   .then((response) => {
-        //     if (response.data) {
-        //       toast.success("Login successfully");
-        //     }
-        //     sessionStorage.setItem("Online_Exam", JSON.stringify(response.data));
-        //     setAuthUser(response.data);
-        //   })
-        //   .catch((error) => {
-        //     if (error.response) {
-        //       toast.error("Error: " + error.response.data.error);
-        //     }
-        //   });
+        // console.log(userInfo);
+        await axios.post("/olms-api/user/register", userInfo)
+            .then((response) => {
+                if (response.data) {
+                    toast.success("Register successfully..");
+                }
+                sessionStorage.setItem("OLMS_User", JSON.stringify(response.data));
+                setAuthUser(response.data);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    toast.error("Error: " + error.response.data.error);
+                }
+            });
     }
     React.useEffect(() => {
         if (isSubmitSuccessful) {
