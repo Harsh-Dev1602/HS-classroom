@@ -10,9 +10,13 @@ import Login from './Commponets/Login'
 // import Footer from './Commponets/Footer'
 import { useAuth } from "./Context/AuthProvider.jsx";
 import Dashboard from './Commponets/Dashboard.jsx';
+import IDashboard from './Commponets/Instructor/Dashboard.jsx';
+
 import AdminDashboard from './Commponets/AdminDashboard.jsx';
-import InstructorDashboard from './Commponets/InstructorDashboard.jsx';
+import InstructorDashboard from './Commponets/Instructor/InstructorDashboard.jsx';
 import Loader from './Loading/Loader.jsx';
+import MyCourses from './Commponets/Instructor/MyCourses.jsx';
+import CreateCourse from './Commponets/Instructor/CreateCourse.jsx';
 
 function App() {
 
@@ -36,35 +40,41 @@ function App() {
                 <Route path="/" element={authUser ? <Navigate to="/dashboard" /> : <Home />} />
                 <Route path="/signup" element={authUser ? <Navigate to="/dashboard" /> : <SignUp />} />
                 <Route path="/login" element={authUser ? <Navigate to="/dashboard" /> : <Login />} />
-                <Route path='/dashboard' element={authUser ? (authUser?.user?.role === "@dmin" ? <Navigate to="/admin-dashboard" /> : (authUser?.user?.role === "instructor" ? <Navigate to="/instructor-dashboard" /> :
+                <Route path='/dashboard' element={authUser ? (authUser?.user?.role === "@dmin" ? <Navigate to="/admin-dashboard" /> : (authUser?.user?.role === "instructor" ? <Navigate to="/instructor" /> :
                   <Dashboard />)) : (<Navigate to="/" />)} />
                 <Route path='/admin-dashboard' element={authUser?.user?.role === "@dmin" ? <AdminDashboard /> : <Navigate to="/" />} />
-                <Route path='/instructor-dashboard' element={authUser?.user?.role === "instructor" ? <InstructorDashboard /> : <Navigate to="/" />} />
-              </Routes>
-              {/* <Footer />  */}
-            </>
-          )
+                <Route path='/instructor' element={authUser?.user?.role === "instructor" ? <InstructorDashboard /> : <Navigate to="/" />} />
+
+                <Route path="/instructor"  element={authUser ?<InstructorDashboard /> : <Navigate to="/" />}>
+                  <Route index element={authUser ?<IDashboard />: <Navigate to="/" />} />
+                  <Route path="/instructor/my-courses" element={authUser ?<MyCourses /> : <Navigate to="/" />} />
+                  <Route path="/instructor/create-course" element={authUser ?<CreateCourse />: <Navigate to="/" /> } />
+              </Route>
+            </Routes>
+        {/* <Footer />  */}
+      </>
+      )
         }
 
-        <Toaster
-          position="bottom-center"
-          reverseOrder={false}
-          toastOptions={{
-            style: {
-              width: "100%",
-              fontSize: '20px',
-              fontWeight: "700",
-              borderRadius: "12px",
-              color: "#145da0",
-              border: "solid 2px #145da0",
-              backgroundColor: "white"
-            },
-            iconTheme: {
-              secondary: 'white',
-            },
-          }}
-        />
-      </div>
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: "700",
+            borderRadius: "12px",
+            color: "#145da0",
+            border: "solid 2px #145da0",
+            backgroundColor: "white"
+          },
+          iconTheme: {
+            secondary: 'white',
+          },
+        }}
+      />
+    </div >
 
     </>
   )

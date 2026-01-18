@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import seedAdmin from "./controllers/admin.controller.js";
 import seedInstructor from "./controllers/instructor.controller.js";
 import userRouter from "./routes/user.route.js";
+import courseRoutes from "./routes/course.route.js"
 
 
 dotenv.config()
@@ -28,6 +29,8 @@ try {
 }
 
 app.use("/olms-api/user",userRouter);
+
+app.use("/olms-api/user/courses",courseRoutes);
 
 app.listen(port, () => {
   console.log(`Web backend project listening on port http://localhost:${port}`)
