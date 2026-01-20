@@ -50,12 +50,12 @@ function Navbar() {
 
             {/* Dropdown */}
             {isOpen && (
-              <div className="absolute z-50 w-40 transition-all duration-200 right-[5%] mt-2 Box_Shedow rounded-2xl p-1 ">
+              <div className="absolute z-50 w-50 transition-all duration-200 right-[5%] mt-2 Box_Shedow rounded-2xl p-1 ">
                 <div className="bg-white rounded-2xl  p-3">
-                  <p className="font-bold text-2xl text-center Text_Color">{authUser.user.fullname}</p>
+                  <h3 className="font-bold text-center Text_Color">{authUser.user.fullname}</h3>
                   <p className="text-center my-1 text-[18px] italic text-gray-800 ">{authUser?.user?.role}</p>
                   <button onClick={handleLogout} className="w-full bg-red-950  text-red-100 border border-red-400 border-b-4 cursor-pointer overflow-hidden relative px-4 py-1 rounded-2xl hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
-                    <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 rounded-2xl opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]" />
+                    <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex rounded-2xl opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]" />
                     Log out
                   </button>
                 </div>

@@ -17,6 +17,7 @@ import InstructorDashboard from './Commponets/Instructor/InstructorDashboard.jsx
 import Loader from './Loading/Loader.jsx';
 import MyCourses from './Commponets/Instructor/MyCourses.jsx';
 import CreateCourse from './Commponets/Instructor/CreateCourse.jsx';
+import AddUnit from './Commponets/Instructor/AddUnit.jsx';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
   }, []);
   return (
     <>
-      <div className="w-full container mx-auto Font_Text px-2 ">
+      <div className="w-full container mx-auto Font_Text px-2 leading-none">
         {
           loading ? (<Loader />) : (
             <>
@@ -49,6 +50,7 @@ function App() {
                   <Route index element={authUser ?<IDashboard />: <Navigate to="/" />} />
                   <Route path="/instructor/my-courses" element={authUser ?<MyCourses /> : <Navigate to="/" />} />
                   <Route path="/instructor/create-course" element={authUser ?<CreateCourse />: <Navigate to="/" /> } />
+                   <Route path="/instructor/add-unit/:courseId" element={<AddUnit/>} />
               </Route>
             </Routes>
         {/* <Footer />  */}

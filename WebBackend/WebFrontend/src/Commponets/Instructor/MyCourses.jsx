@@ -4,8 +4,11 @@ import { useAuth } from "../../Context/AuthProvider.jsx";
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function MyCourses() {
+
+   const navigate = useNavigate();
   const [authUser] = useAuth();
   const [courses, setCourses] = useState([]);
 
@@ -35,21 +38,29 @@ function MyCourses() {
   return (
     <>
       <div className=' p-5'>
-        <h3>My Courses</h3>
+        <h3 className='Text_Color'>My Courses</h3>
         <div style={{ minHeight: "calc( 100vh - 200px )" }} className=' overflow-y-auto'>
           <div style={{ maxHeight: "calc( 100vh - 200px )" }} className="grid gap-5  lg:grid-cols-3">
             {
               courses.map((r) => (
                 <div key={r._id} className=" w-full h-auto rounded-2xl p-4 Box_Shedow gap-3 ">
+                
                   <img src={r.thumbnail} className='w-full h-50 object-cover rounded-2xl' />
                   <div>
-                    <h2 className="font-bold text-[#051d40]">{r.title}</h2>
+                    <h2 className="font-bold Text_Color text-center py-5 uppercase ">{r.title}</h2>
+
                     <p className='max-h-30 overflow-y-auto text-justify'>{r.description}</p>
+                    
                   </div>
-                  <div className="flex justify-evenly mt-2">
-                    <button className="bg-sky-700 font-bold p-2 px-6 cursor-pointer rounded-2xl text-white">Add</button>
-                    <button onClick={() => deleteCourse(r._id)} className="bg-red-700 cursor-pointer font-bold p-2 px-6 rounded-2xl text-white">Delete</button>
+                  <div className="flex justify-between items-center mt-4">
+                    <button onClick={() =>  navigate(`/instructor/add-unit/${r._id}`)} className="text-[#145da0] border-2 border-[#145da0]  font-bold py-1 px-3 cursor-pointer rounded-2xl ">Add unit</button>
+                    <button onClick={() => deleteCourse(r._id)} className="border-2 border-[#a01414] bg-[#a01414ce]  cursor-pointer font-bold py-1 px-3 rounded-2xl text-white">Delete</button>
                   </div>
+                    <p className='mt-5 text-gray-500'>{new Date(r.createdAt).toLocaleString("en-IN", {
+                        dateStyle: "medium",
+                        timeStyle: "short",
+                      })}</p>
+                  
                 </div>
               ))
             }

@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
    try {
      const existingInstructor = await Instructor.findOne({ email: process.env.INSTRUCTOR_EMAIL1 }); 
      if (existingInstructor) {
-       console.log('✅ instructor already exists..');
+       console.log('✅ !nstructor already exists..');
        return;
       }
     const hashPassword = await bcrypt.hash(process.env.INSTRUCTOR_PASS1, 10);
