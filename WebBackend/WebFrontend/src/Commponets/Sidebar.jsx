@@ -8,7 +8,7 @@ import { IoIosCreate } from "react-icons/io";
 function Sidebar() {
     return (
         <>
-            <div className="w-60">
+            <div className="w-70">
                 <Link to="/instructor" className=" hover:bg-gray-400 flex items-center gap-2 p-2 rounded-2xl hover:text-white ">
                 <MdDashboardCustomize className='Box_Shedow p-1 rounded-xl text-2xl' />Dashboard
                 </Link>

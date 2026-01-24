@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoCaretBackSharp } from "react-icons/io5";
+
 
 
 function AddUnit() {
@@ -95,8 +97,12 @@ function AddUnit() {
     <>
       <div style={{ minHeight: "calc( 100vh - 100px )" }} className=' overflow-y-auto'>
         <div style={{ maxHeight: "calc( 100vh - 100px )" }} className="">
+          <div className="flex p-5 gap-5 items-center">
+          <Link to="/instructor/my-courses" ><IoCaretBackSharp className=' p-2 hover:bg-gray-100 text-5xl rounded-2xl'/></Link>
+           <h2 className="Text_Color font-bold mb-4">{courses.title}</h2>
+          </div>
           <div className="max-w-md mx-auto bg-gray-50 rounded-2xl p-6">
-            <h2 className="Text_Color font-bold mb-4">{courses.title}</h2>
+           
             <h3 className='text-center'>Add Unit</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-5">
               <div className="mb-4 flex flex-col">
