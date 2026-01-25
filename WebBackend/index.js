@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
 import cookieParser from "cookie-parser";
 
 import seedAdmin from "./controllers/admin.controller.js";
@@ -31,6 +32,15 @@ try {
 app.use("/olms-api/user",userRouter);
 
 app.use("/olms-api/user/courses",courseRoutes);
+
+
+if (process.env.NODE_ENV === 'production') {
+    const dirPath = path.resolve();
+    app.use(express.static("./WebFrontend/dist"));
+    app.get(/.*/, (req, res) => {
+        res.sendFile(path.resolve(dirPath,'./WebFrontend/dist','index.html'));
+    });
+}
 
 app.listen(port, () => {
   console.log(`Web backend project listening on port http://localhost:${port}`)
