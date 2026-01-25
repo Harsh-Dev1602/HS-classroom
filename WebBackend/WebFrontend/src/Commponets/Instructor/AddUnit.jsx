@@ -96,7 +96,6 @@ function AddUnit() {
   return (
     <>
       <div style={{ minHeight: "calc( 100vh - 100px )" }} className=' overflow-y-auto'>
-        <div style={{ maxHeight: "calc( 100vh - 100px )" }} className="">
           <div className="flex p-5 gap-5 items-center">
           <Link to="/instructor/my-courses" ><IoCaretBackSharp className=' p-2 hover:bg-gray-100 text-5xl rounded-2xl'/></Link>
            <h2 className="Text_Color font-bold mb-4">{courses.title}</h2>
@@ -144,7 +143,7 @@ function AddUnit() {
               }
             </div>
           </div>
-        </div>
+
       </div>
     </>
 

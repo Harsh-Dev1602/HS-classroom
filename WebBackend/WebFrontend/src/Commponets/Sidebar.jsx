@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { MdDashboardCustomize } from "react-icons/md";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { IoIosCreate } from "react-icons/io";
+import { HiUserGroup } from "react-icons/hi";
 import { useAuth } from '../Context/AuthProvider';
 
 function Sidebar() {
@@ -10,9 +11,8 @@ function Sidebar() {
     const menuConfig = {
         "@dmin": [
             { id: 0, label: "Dashboard", icon: <MdDashboardCustomize />, path: "/admin-dashboard" },
-            { id: 1, label: "Manage Courses",icon:<MdDashboardCustomize />, path: "/admin-dashboard" },
-            { id: 2, label: "Users",icon:<MdDashboardCustomize />, path: "/admin-dashboard" },
-            { id: 3, label: "Settings",icon:<MdDashboardCustomize />, path: "/admin-dashboard" },
+            { id: 1, label: " Courses",icon:<IoBookmarksOutline />, path: "/admin-dashboard" },
+            { id: 2, label: "Users",icon:<HiUserGroup />, path: "/admin-dashboard" },
         ],
         instructor: [
             { id:0, label: "Dashboard", icon: <MdDashboardCustomize />, path: "/instructor" },

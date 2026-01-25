@@ -10,7 +10,7 @@ function Dashboard() {
                 <div className={`${!authUser?.user?.role ? "hidden": " "}`}>
                     <Sidebar />
                 </div>
-                <div className="w-full p-2 Box_Shedow rounded-2xl">
+                <div style={{ maxHeight: "calc( 100vh - 85px )" }} className="w-full p-4 Box_Shedow rounded-2xl overflow-y-auto">
                     <Outlet />
                 </div>
             </div>
