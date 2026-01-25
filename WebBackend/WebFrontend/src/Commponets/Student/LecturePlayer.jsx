@@ -55,7 +55,7 @@ function LecturePlayer() {
                 <aside style={{ maxHeight: "calc(100vh - 150px)" }}>
                     <div className="flex items-center mb-4">
 
-                        <Link to="/dashboard" ><IoCaretBackSharp className=' p-2 hover:bg-gray-100 text-5xl rounded-2xl' /></Link>
+                        <Link to="/student" ><IoCaretBackSharp className=' p-2 hover:bg-gray-100 text-5xl rounded-2xl' /></Link>
                         <h3 className="Text_Color font-bold">Course Units</h3>
                     </div>
                     <ul>
@@ -88,7 +88,7 @@ function LecturePlayer() {
                     <div className="w-full bg-white p-4 Box_Shedow rounded-2xl">
                         <h3 className="Text_Color font-bold text-xl mb-4">{selectedVideo.unitTitle}</h3>
                         <iframe
-                            className="w-full h-[500px] rounded-2xl Box_Shedow"
+                            className="w-full h-[460px] rounded-2xl Box_Shedow"
                             src={selectedVideo.embedUrl}
                             title={selectedVideo.unitTitle}
                             frameBorder="0"

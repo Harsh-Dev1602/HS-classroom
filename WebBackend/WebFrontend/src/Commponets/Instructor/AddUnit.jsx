@@ -122,7 +122,7 @@ function AddUnit() {
             <div className="flex flex-col gap-4">
               {
                 units.map((r) => (
-                  <div key={r._id} onClick={() => openFullScreenVideo(r.video)} className="w-full flex justify-between items-start h-auto rounded-2xl p-4 bg-gray-50 gap-3 ">
+                  <div key={r._id} className="w-full flex justify-between items-start h-auto rounded-2xl p-4 bg-gray-50 gap-3 ">
                     <div className="flex items-center gap-2">
                       <iframe
                         className="w-30 h-20 object-cover rounded-2xl Box_Shedow"
