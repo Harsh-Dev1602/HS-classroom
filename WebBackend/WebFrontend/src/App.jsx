@@ -7,7 +7,7 @@ import { useAuth } from "./Context/AuthProvider.jsx";
 import Navbar from './Componets/Navbar.jsx';
 import Home from './Componets/Home.jsx';
 import SignUp from './Componets/SignUp.jsx';
-import Login from './Componets/Login.jsx';
+import Login from './Componets/LogIn.jsx';
 import Dashboard from './Componets/Dashboard.jsx';
 
 import AdminDashboard from './Componets/Admin/AdminDashboard.jsx';

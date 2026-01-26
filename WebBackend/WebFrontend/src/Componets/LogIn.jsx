@@ -5,7 +5,7 @@ import axios from "axios"
 import toast from 'react-hot-toast'
 import { useAuth } from "../Context/AuthProvider.jsx";
 
-function Login() {
+function LogIn() {
         const [authUser, setAuthUser] = useAuth();
       const {
         register,
@@ -70,4 +70,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LogIn
