@@ -4,22 +4,22 @@ import { Toaster } from 'react-hot-toast';
 import 'animate.css';
 import { useAuth } from "./Context/AuthProvider.jsx";
 
-import Navbar from './Commponets/Navbar';
-import Home from './Commponets/Home';
-import SignUp from './Commponets/SignUp';
-import Login from './Commponets/Login';
-import Dashboard from './Commponets/Dashboard.jsx';
+import Navbar from './Componets/Navbar';
+import Home from './Componets/Home';
+import SignUp from './Componets/SignUp';
+import Login from './Componets/Login';
+import Dashboard from './Componets/Dashboard.jsx';
 
-import AdminDashboard from './Commponets/Admin/AdminDashboard.jsx';
-import InstructorDashboard from './Commponets/Instructor/InstructorDashboard.jsx';
-import StudentDashboard from './Commponets/Student/StudentDashboard.jsx';
+import AdminDashboard from './Componets/Admin/AdminDashboard.jsx';
+import InstructorDashboard from './Componets/Instructor/InstructorDashboard.jsx';
+import StudentDashboard from './Componets/Student/StudentDashboard.jsx';
 
 import Loader from './Loading/Loader.jsx';
-import MyCourses from './Commponets/Instructor/MyCourses.jsx';
-import CreateCourse from './Commponets/Instructor/CreateCourse.jsx';
-import AddUnit from './Commponets/Instructor/AddUnit.jsx';
+import MyCourses from './Componets/Instructor/MyCourses.jsx';
+import CreateCourse from './Componets/Instructor/CreateCourse.jsx';
+import AddUnit from './Componets/Instructor/AddUnit.jsx';
 
-import LecturePlayer from './Commponets/Student/LecturePlayer.jsx';
+import LecturePlayer from './Componets/Student/LecturePlayer.jsx';
 
 function App() {
   const [authUser] = useAuth();
