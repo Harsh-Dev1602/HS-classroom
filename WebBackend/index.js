@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
+
 import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
 import seedAdmin from "./controllers/admin.controller.js";
@@ -23,17 +25,15 @@ const URL = process.env.MONGODB_URL
 try {
   mongoose.connect(URL);
   console.log("Online learning management system  connected to mongoose db..");
-   await seedAdmin(); 
-   await seedInstructor();
+  await seedAdmin();
+  await seedInstructor();
 } catch (error) {
   console.log(error);
 }
 
-app.use("/olms-api/user",userRouter);
+app.use("/olms-api/user", userRouter);
 
-app.use("/olms-api/user/courses",courseRoutes);
-
-import fs from "fs";
+app.use("/olms-api/user/courses", courseRoutes);
 
 const swaggerFile = JSON.parse(
   fs.readFileSync("./swagger/swagger-output.json", "utf-8")
@@ -43,11 +43,11 @@ app.use("/olms-api/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 if (process.env.NODE_ENV === 'production') {
-    const dirPath = path.resolve();
-    app.use(express.static("./WebFrontend/dist"));
-    app.get(/.*/, (req, res) => {
-        res.sendFile(path.resolve(dirPath,'./WebFrontend/dist','index.html'));
-    });
+  const dirPath = path.resolve();
+  app.use(express.static("./WebFrontend/dist"));
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.resolve(dirPath, './WebFrontend/dist', 'index.html'));
+  });
 }
 
 app.listen(port, () => {
