@@ -39,7 +39,7 @@ const swaggerFile = JSON.parse(
   fs.readFileSync("./swagger/swagger-output.json", "utf-8")
 );
 
-app.use("/olms-api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/olms-api/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 if (process.env.NODE_ENV === 'production') {
