@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
-
+import swaggerUi from "swagger-ui-express";
 import seedAdmin from "./controllers/admin.controller.js";
 import seedInstructor from "./controllers/instructor.controller.js";
 import userRouter from "./routes/user.route.js";
@@ -32,6 +32,14 @@ try {
 app.use("/olms-api/user",userRouter);
 
 app.use("/olms-api/user/courses",courseRoutes);
+
+import fs from "fs";
+
+const swaggerFile = JSON.parse(
+  fs.readFileSync("./swagger/swagger-output.json", "utf-8")
+);
+
+app.use("/olms-api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 if (process.env.NODE_ENV === 'production') {
