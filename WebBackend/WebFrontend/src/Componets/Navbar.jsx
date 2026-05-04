@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaChevronDown } from "react-icons/fa"; // Added Chevron
 import Logo from "../../public/Logo_Img.png"
 import { useAuth } from "../Context/AuthProvider.jsx";
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
 function Navbar() {
-
   const [isOpen, setIsOpen] = useState(false);
   const [authUser, setAuthUser] = useAuth();
 
@@ -19,52 +18,80 @@ function Navbar() {
       sessionStorage.removeItem("OLMS_User");
       toast.success("Log out successfully..");
       window.location.reload();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Error in Logout", error);
       toast.error("Error in logging out");
     }
   };
+
   return (
     <>
-      <div className=" h-15 rounded-2xl mt-2 Box_Shedow p-2 flex justify-between items-center">
-        <Link to="/" className='flex justify-center items-center italic font-bold'>
-          <img src={Logo} className='w-10 md:w-15 mr-2' />
-          <h2 className='Text_Color '>HS</h2>
-          <h3 className=' hidden sm:block text-gray-200'> classroom</h3>
+      {/* Container: Matching the white, clean look from themewagon.github.io_eduleb_.jpg */}
+      <nav className="h-20 bg-white border-b border-gray-100 flex justify-between items-center px-6 md:px-12 sticky top-0 z-50">
+        
+        {/* Logo Section */}
+        <Link to="/" className='flex items-center gap-2 group'>
+          <img src={Logo} className='w-10 transition-transform group-hover:scale-110' alt="Logo" />
+          <div className="flex flex-col leading-none">
+            <span className='text-xl font-extrabold text-blue-600 tracking-tight'>HS</span>
+            <span className='hidden sm:block text-[10px] uppercase tracking-widest text-gray-400 font-semibold'>Classroom</span>
+          </div>
         </Link>
 
-        <div className={`${authUser ? " hidden" : " "} space-x-1 md:space-x-4`}>
-          <Link to="/signup" className='border-2 border-[#145da0] Text_Color py-1 px-2 font-semibold rounded-2xl'>Sign Up</Link>
-          <Link to="/login" className='border-2 border-[#145da0] Text_Color py-1 px-2 font-semibold rounded-2xl'>Log In</Link>
-        </div>
 
-        <div className={`${authUser?"block": "hidden"}`}>
-
-          <span onClick={() => setIsOpen(false)} className={`${isOpen ? "fixed" : "hidden"} top-0 right-0 w-full cursor-pointer h-screen z-40 bg-transparent`}></span>
-          <div className="relative inline-block text-left" onClick={() => setIsOpen(true)}  >
-            {/* User Icon */}
-            <button className="flex items-center">
-              <FaUser className="text-4xl hover:border-2 hover:p-1 border-[#145da0] cursor-pointer text-[#145da0] bg-white rounded-xl p-1 transition" />
-            </button>
-
-            {/* Dropdown */}
-            {isOpen && (
-              <div className="absolute z-50 w-50 transition-all duration-200 right-[5%] mt-2 Box_Shedow rounded-2xl p-1 ">
-                <div className="bg-white rounded-2xl  p-3">
-                  <h3 className="font-bold text-center Text_Color">{authUser.user.fullname}</h3>
-                  <p className="text-center my-1 text-[18px] italic text-gray-800 ">{authUser?.user?.role}</p>
-                  <button onClick={handleLogout} className="w-full bg-red-950  text-red-100 border border-red-400 border-b-4 cursor-pointer overflow-hidden relative px-4 py-1 rounded-2xl hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
-                    <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex rounded-2xl opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]" />
-                    Log out
-                  </button>
+        {/* Auth Actions */}
+        <div className="flex items-center gap-4">
+          {!authUser ? (
+            <div className="flex items-center space-x-3">
+              <Link to="/login" className='text-slate-600 font-semibold px-4 py-2 hover:text-blue-600 transition'>
+                Sign In
+              </Link>
+              <Link to="/signup" className='bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-blue-700 transition transform hover:-translate-y-0.5 active:scale-95'>
+                Join For Free
+              </Link>
+            </div>
+          ) : (
+            <div className="relative">
+              {/* User Profile Trigger */}
+              <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-2 p-1.5 pr-3 rounded-full hover:bg-gray-100 transition border border-gray-100"
+              >
+                <div className="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                  <FaUser size={18} />
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
+                <div className="hidden md:block text-left">
+                  <p className="text-xs font-bold text-slate-800 leading-none">{authUser.user.fullname.split(' ')[0]}</p>
+                  <p className="text-[10px] text-gray-500 uppercase font-semibold">{authUser?.user?.role}</p>
+                </div>
+                <FaChevronDown size={10} className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-      </div>
+              {/* Dropdown Menu */}
+              {isOpen && (
+                <>
+                  <div 
+                    className="fixed inset-0 z-40 bg-transparent" 
+                    onClick={() => setIsOpen(false)} 
+                  />
+                  <div className="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 z-50 overflow-hidden py-2 animate-in fade-in zoom-in duration-200">
+                    <div className="px-4 py-2 border-b border-gray-50 mb-1">
+                      <p className="text-sm font-bold text-slate-800">{authUser.user.fullname}</p>
+                      <p className="text-xs text-gray-400 truncate">{authUser.user.email || 'Student'}</p>
+                    </div>
+                    <button 
+                      onClick={handleLogout} 
+                      className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 font-semibold transition"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </nav>
     </>
   )
 }

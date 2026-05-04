@@ -4,17 +4,21 @@ import { Outlet } from 'react-router-dom';
 
 function Dashboard() {
     const [authUser] = useAuth();
+
     return (
-        <>
-            <div style={{ minHeight: "calc( 100vh - 85px )" }} className="my-2 flex  gap-5 ">
-                <div className={`${!authUser?.user?.role ? "hidden": " "}`}>
+        <div style={{ height:"calc(100vh - 100px)"}} className="w-full overflow-y-hidden bg-[#f8fafc] flex ">
+            {/* Conditional Sidebar Wrapper */}
+            {authUser?.user?.role && (
+                <div className="hidden md:block w-72 border-r border-slate-200 bg-white">
                     <Sidebar />
                 </div>
-                <div style={{ maxHeight: "calc( 100vh - 85px )" }} className="w-full p-4 Box_Shedow rounded-2xl overflow-y-auto">
-                    <Outlet />
-                </div>
+            )}
+
+            {/* Main Content Area */}
+            <div className="  container overflow-y-auto mx-auto ">
+                <Outlet />
             </div>
-        </>
+        </div >
     )
 }
 
